@@ -35,6 +35,37 @@ public class MoteurJeu implements MoteurJeuInterface{
       -adjascente a un pion adverse dans les huit direction
       
       */
+     @Override
+	 public boolean permetPrise(Grille grille, int tour_joueur, int ligne, int colonne,int sens_i, int sens_j){
+		 boolean valide=false;
+		 int i = ligne;
+		 int j = colonne;
+		 do {
+			 i += sens_i;
+			 j += sens_j;
+		 } while ((dansGrille(i,j)) && (grille.matrice[i][j] == 3 - tour_joueur));
+		 if ((dansGrille(i, j)) && (grille.matrice[i][j] == tour_joueur)) {
+			 valide = true;
+		 }
+		 return valide;
+	 }
+
+	 @Override
+	public boolean isValide2(Grille grille,int joueur, int i, int j){
+		boolean valide = false;
+		if (grille.matrice[i][j]==0) {
+			int coupPossible[] = {-1, -1, -1, 0, -1, 1, 0, -1, 0, 1, 1, -1, 1, 0, 1, 1};
+			for (int k = 0; k < 16; k += 2) {
+				if (dansGrille(i + coupPossible[k], j + coupPossible[k + 1]) && (grille.matrice[i + coupPossible[k]][j + coupPossible[k + 1]] == 3 - joueur)) {
+					if (permetPrise(grille, joueur, i, j, coupPossible[k], coupPossible[k + 1])) {
+						valide = true;
+					}
+				}
+			}
+		}
+		return valide;
+	}
+
 	 @Override
     public boolean isValide(Grille grille,int joueur,int x, int y) {
         boolean valide = false;
@@ -123,16 +154,16 @@ public class MoteurJeu implements MoteurJeuInterface{
 	 
 	 @Override
 	 public int comptePoint(Grille grille) {
-	        int somme_j1 =0;
-	        for (int i=0;i<grille.matrice.length;i++){
-	            for (int j=0;j<grille.matrice.length;j++){
-	                if (grille.matrice[i][j]== 1) {
-	                    somme_j1 += 1;
-	                }
-	            }
-	        }
-	        return somme_j1;
-	    }
+		 int somme_j1 = 0;
+		 for (int i = 0; i < grille.matrice.length; i++) {
+			 for (int j = 0; j < grille.matrice.length; j++) {
+				 if (grille.matrice[i][j] == 1) {
+					 somme_j1 += 1;
+				 }
+			 }
+		 }
+		 return somme_j1;
+	 }
 
 	 
 	 
@@ -228,8 +259,8 @@ public class MoteurJeu implements MoteurJeuInterface{
 	    
 	 @Override
 	 public  boolean dansGrille(int ligne,int colonne){
-	        return (!(ligne<0)||(ligne>=8)||(colonne<0)||(colonne>=8));
-	    }
+		 return !((ligne < 0) || (ligne > 7) || (colonne < 0) || (colonne > 7));
+	 }
 
 	    
 	 @Override

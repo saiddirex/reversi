@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorator="template">
-<form id="grille_form" name="grille_form" th:action="@{/grilles}" th:object="${Grille}" method="post">
+<form id="grille_form" name="grille_form" th:action="@{/grilles}" th:object="${Grille}" method="post"></form>
 
 
 
@@ -12,22 +11,24 @@
     <meta charset="UTF-8">
     <title>Reversi</title>
 </head>
+
 <body>
+
 <div layout:fragment="content">
 <div class="col-md-4 col-md-offset-4">
   <div class="panel panel-primary">
   <div class="panel-heading">Reversi</div>
   <div class="panel-body">
-  
-     <table>
+
+     <table id="matrice">
     <tr> <!-- Ligne 1 -->
-     
+
         <td  onclick="location.href='/grille/0/0'" th:switch="${Grille.matrice[0][0]}">
             <div th:case="0"></div>
             <div th:case="1"><img src="rond-blanc.png"></div>
             <div th:case="2"><img src="rond-noir.png"></div>
         </td>
-        
+
         <td  onclick="location.href='/grille/0/1'" th:switch="${Grille.matrice[0][1]}">
             <div th:case="0"></div>
             <div th:case="1"><img src="rond-blanc.png"></div>
@@ -371,28 +372,6 @@
 
 </div>
 
-
-<script type="text/javascript">
-$(function () {
-    rafraichirDansUneSeconde();
-});
-
-function rafraichirDansUneSeconde() {
-    setTimeout(rafraichirHeureCourante, 1000);
-}
-
-function rafraichirHeureCourante() {
-    $.ajax({
-        url: '/grille',
-        dataType:'json',
-        success: function (data, textStatus, jqXHR) {
-            $('#restGrille').text(data);
-        }
-    });
-    rafraichirDansUneSeconde();
-}
-
-</script>
 
 </body>
 </html>

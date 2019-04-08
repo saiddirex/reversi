@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.sid.business.MoteurJeu;
 import org.sid.business.MoteurJeuInterface;
 import org.sid.entities.Grille;
 import org.sid.entities.Joueur;
@@ -51,35 +50,36 @@ public class GrilleController {
 	        
 	        //Mécanique de jeu !!!
 	        int joueur;
-	        if(grille.tour%2==0) {//au debut tour==4
-	        	joueur=2;//noir
-	        }else {
-	        	joueur=1;//blanc
-	        }
-	        boolean valide=moteurJeuInt.isValide(grille, joueur, id1, id2);
-	        if(valide) {
-	        	 if(grille.tour%2==0)
-	 	        {
-	 	            grille.matrice[id1][id2]=2;
-	 	            grille.tour++;
+	        if(grille.tour<63) {
+				if (grille.tour % 2 == 0) {//au debut tour==4
+					joueur = 2;//noir
+				} else {
+					joueur = 1;//blanc
+				}
+				boolean valide = moteurJeuInt.isValide2(grille, joueur, id1, id2);
+				if (valide) {
+					if (grille.tour % 2 == 0) {
+						grille.matrice[id1][id2] = 2;
+						grille.tour++;
 
-	 	        }
-	 	        else {
-	 	            grille.matrice[id1][id2]=1;
-	 	            grille.tour++;
+					} else {
+						grille.matrice[id1][id2] = 1;
+						grille.tour++;
 
-	 	        }
-	        	 
-	        	 moteurJeuInt.effectuerCoup(grille,joueur, id1, id2);
-	        	
-	        }
-	        
+					}
+
+					moteurJeuInt.effectuerCoup(grille, joueur, id1, id2);
+				}
+			}
+	        else
+			{
+				moteurJeuInt.comptePoint(grille);
+			}
 	       
 	        //moteurJeuInt.changerCouleur(id1, id2, 3, 3, 2, grille);
-	       
+
 	        return "<meta http-equiv='refresh' content='0; url=/main'>";
 	    }
-
 	    ModelAndView getGrille(String viewName) {
 	        return new ModelAndView(viewName, "Grille", grille);
 	    }
