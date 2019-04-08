@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Reversi</title>
+
+  <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css"
+  th:href="@{/css/myStyle.css}"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/myStyle2.css"
+  th:href="@{/css/myStyle2.css}"/>
+</head>
+<body>
+   <header>
+	   <div class="navbar navbar-inverse">
+	      <div class="container-fluid">
+	          <ul class="nav navbar-nav">
+	              <li><a th:href="@{/listeJoueurs}">Liste Joueurs</a></li>
+	              <li><a th:href="@{/newPartie}">Nouvelle Partie</a></li>
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	            <li><a th:href="@{/login?logout}">logout</a></li>
+	          </ul>
+	          <!--  <ul class="nav navbar-nav navbar-right">
+	            <li><a th:text="${/login?logout}"></a></li>
+	          </ul> -->
+	       </div>
+	   </div>
+   </header>
+   <section layout:fragment="content"></section>
+   <footer>
+     <div class="navbar-fixed-bottom">
+         <small>reversi@gmail.com</small>
+     </div>
+   </footer>
+
+</body>
+</html>

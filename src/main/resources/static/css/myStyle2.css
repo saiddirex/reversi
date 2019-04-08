@@ -1,0 +1,22 @@
+.spacer40{
+	margin-top:40px;
+}
+.red{
+	color:red;
+}
+
+table {
+border: medium solid #000000;
+border-collapse: collapse;
+background-color:#C0C0C0;
+}
+img {
+   width: 100%;
+}
+td, th {
+max-width: 50px;
+width:50px;
+max-height: 50px;
+height:50px;
+border: medium solid #000000;
+}
