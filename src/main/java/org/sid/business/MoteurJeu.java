@@ -1,10 +1,16 @@
 package org.sid.business;
 
+import java.util.List;
+
 import org.sid.data.GrilleRepository;
 import org.sid.data.JoueurRepository;
 import org.sid.data.PartieRepository;
 import org.sid.entities.Grille;
+import org.sid.entities.Joueur;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +22,14 @@ Les pions blanc sont representé par un 1 dans la matrice */
 @Transactional
 public class MoteurJeu implements MoteurJeuInterface{
 
+	
+	@Bean 
+	public PasswordEncoder passwordEncoder() { 
+	    return new BCryptPasswordEncoder(); 
+	} 
+	
+	@Autowired 
+	PasswordEncoder passwordEncoder; 
 	@Autowired
 	 private JoueurRepository joueurRepository;
 
@@ -35,6 +49,25 @@ public class MoteurJeu implements MoteurJeuInterface{
       -adjascente a un pion adverse dans les huit direction
       
       */
+	 
+	 
+	 @Override
+	 public List<Joueur> getAllJoueur(){
+		 List<Joueur> listJoueurs;
+		 listJoueurs=joueurRepository.findAll();
+		 return listJoueurs;
+	 }
+	 
+	 @Override
+	 public Joueur addJoueur(String nom,String prenom, String username, String password){
+         Joueur user=new Joueur(nom, prenom, username, password);
+         String encryptedPassword = passwordEncoder.encode(password); 
+         user.setPassword(encryptedPassword); 
+         boolean j=joueurRepository.existsById(username);
+         if(j) throw new RuntimeException("username deja utilise");
+		 joueurRepository.saveAndFlush(user);
+		 return user;
+	 }
      @Override
 	 public boolean permetPrise(Grille grille, int tour_joueur, int ligne, int colonne,int sens_i, int sens_j){
 		 boolean valide=false;
