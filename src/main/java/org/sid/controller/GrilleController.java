@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.sid.business.MoteurJeuInterface;
 import org.sid.entities.Grille;
 import org.sid.entities.Joueur;
+import org.sid.entities.Partie;
 
 @RestController
 @RequestMapping("/grille")
@@ -18,6 +19,11 @@ public class GrilleController {
 
 	  
 	    private Grille grille;
+	    private Partie partie;
+	    private Joueur j1;
+	    private Joueur j2;
+	   
+	
 
 	    @Autowired
 	    public GrilleController(Grille grille) {
@@ -42,6 +48,24 @@ public class GrilleController {
 	    	return this.grille;
 	    }
 	    
+	    @GetMapping("/saveGrille")
+	    public String saveGrille() {
+	    	grille=moteurJeuInt.saveGrille(this.grille);
+	    	
+	    	try {
+	    	  	 j1=moteurJeuInt.addJoueur("said","elfarkh","test1","1234");
+		    	 j2=moteurJeuInt.addJoueur("said","elfarkh","test2","1234");
+	    	}catch(Exception e) {
+	    		
+	    	}
+			partie=new Partie(j1,j2, this.grille);
+	        partie=moteurJeuInt.savePartie(partie);
+	        this.grille=new Grille();
+	    	
+	    	return "<meta http-equiv='refresh' content='0; url=/joueurs?choixJoueur'>";
+	    }
+	    
+	    
 
 	    @GetMapping("{id1}/{id2}")
 	    public String displayQuote(@PathVariable(value = "id1") Integer id1,@PathVariable(value = "id2") Integer id2) {
@@ -56,7 +80,7 @@ public class GrilleController {
 				} else {
 					joueur = 1;//blanc
 				}
-				boolean valide = moteurJeuInt.isValide2(grille, joueur, id1, id2);
+				boolean valide = moteurJeuInt.isValide(grille, joueur, id1, id2);
 				if (valide) {
 					if (grille.tour % 2 == 0) {
 						grille.matrice[id1][id2] = 2;

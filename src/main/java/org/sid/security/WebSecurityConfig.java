@@ -75,13 +75,14 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 @Override
 protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
+            .antMatchers("/error").permitAll()
             .antMatchers("/resources/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
             .successHandler((request, response, authentication) -> {
                 request.getSession().setAttribute("username", authentication.getName());
-                response.sendRedirect("/main");
+                response.sendRedirect("/joueurs?choixJoueurs");
             }).permitAll();
 }
 

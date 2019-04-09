@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sid.entities.Grille;
 import org.sid.entities.Joueur;
+import org.sid.entities.Partie;
 
 public interface MoteurJeuInterface {
 
@@ -17,6 +18,8 @@ public interface MoteurJeuInterface {
 	 public boolean isValide2(Grille grille,int joueur, int i, int j);
 	 public List<Joueur> getAllJoueur();
 	public Joueur addJoueur(String nom, String prenom, String username, String password);
+	public Grille saveGrille(Grille grille);
+	public Partie savePartie(Partie partie);
 
 
 	}

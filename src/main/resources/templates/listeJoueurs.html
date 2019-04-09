@@ -10,9 +10,12 @@
 <body>
 <div layout:fragment="content">
 <div class="col-md-4 col-md-offset-4">
-  <div class="panel panel-primary" th:if="${exception eq null}">
+  <div class="panel panel-primary">
             <div class="panel-heading">Liste des joueurs</div>
         <div class="panel-body">
+         <div th:if="${param.choixJoueur}" class="text-danger">
+	            Veuillez choisir un joueur svp!
+	     </div>
                <table class="table table-striped">
                   <tr>
                     <th>nom</th>

@@ -58,6 +58,7 @@ public class BanqueApplication implements CommandLineRunner{
 		
 
 		Partie p1=partieRepository.save(new Partie(j1,j2,g1));
+	
 		Partie p2=partieRepository.save(new Partie(j1,j3,g1));
 		Partie p3=partieRepository.save(new Partie(j1,j4,g1));
 		Partie p4=partieRepository.save(new Partie(j2,j3,g1));

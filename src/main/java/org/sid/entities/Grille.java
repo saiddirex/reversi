@@ -1,6 +1,7 @@
 package org.sid.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -18,9 +20,8 @@ import org.springframework.stereotype.Component;
 public class Grille implements Serializable{
 	 @Id @GeneratedValue
 	 public long id_grille;
-	 @OneToOne(fetch=FetchType.LAZY)
-	 @JoinColumn(name="ID_PARTIE")
-	 public Partie partie;
+	 @OneToMany(mappedBy="grille",fetch=FetchType.LAZY)
+	 public Collection<Partie> parties;
 	 @Column(length=65535 )
 	 public int[][] matrice=new int[8][8];
 	 public int tour;
@@ -38,6 +39,28 @@ public class Grille implements Serializable{
 	        matrice[3][4]=2;
 
 	    }
+	 
+
+	public Collection<Partie> getParties() {
+		return parties;
+	}
+
+
+	public void setParties(Collection<Partie> parties) {
+		this.parties = parties;
+	}
+
+
+	public int getTour() {
+		return tour;
+	}
+
+
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+
+
 	public int[][] getMatrice() {
 		return matrice;
 	}

@@ -7,6 +7,7 @@ import org.sid.data.JoueurRepository;
 import org.sid.data.PartieRepository;
 import org.sid.entities.Grille;
 import org.sid.entities.Joueur;
+import org.sid.entities.Partie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -59,10 +60,28 @@ public class MoteurJeu implements MoteurJeuInterface{
 	 }
 	 
 	 @Override
+	 public Grille saveGrille(Grille grille){
+		 Grille maGrille;
+		 maGrille=grilleRepository.saveAndFlush(grille);
+		 return maGrille;
+	 }
+	 
+	 @Override
+	 public Partie savePartie(Partie partie){
+		 Partie maPartie;
+		 maPartie=partieRepository.saveAndFlush(partie);
+		 return maPartie;
+	 }
+	 
+	 
+	 @Override
 	 public Joueur addJoueur(String nom,String prenom, String username, String password){
          Joueur user=new Joueur(nom, prenom, username, password);
+         //System.out.println("password = "+password);
          String encryptedPassword = passwordEncoder.encode(password); 
+         //System.out.println("hash de ='"+password+"' est = "+encryptedPassword);
          user.setPassword(encryptedPassword); 
+         //System.out.println("egalite ="+passwordEncoder.matches(password, encryptedPassword));
          boolean j=joueurRepository.existsById(username);
          if(j) throw new RuntimeException("username deja utilise");
 		 joueurRepository.saveAndFlush(user);

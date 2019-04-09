@@ -24,7 +24,7 @@ public class Partie implements Serializable {
 	 @ManyToOne
 	 @JoinColumn(name="USERNAME2")
 	private Joueur joueur2;
-	@OneToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_GRILLE")
 	private Grille grille;
 	public Partie() {
