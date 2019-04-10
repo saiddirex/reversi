@@ -11,16 +11,16 @@
     <meta charset="UTF-8">
     <title>Reversi</title>
 </head>
-
 <body>
 
+
 <div layout:fragment="content">
-<div class="col-md-4 col-md-offset-4">
+    <div class="col-md-4 col-md-offset-4">
   <div class="panel panel-primary">
   <div class="panel-heading">Reversi</div>
   <div class="panel-body">
-
-     <table id="matrice">
+      <div id ="matrice">
+     <table>
     <tr> <!-- Ligne 1 -->
 
         <td  onclick="location.href='/grille/0/0'" th:switch="${Grille.matrice[0][0]}">
@@ -172,7 +172,6 @@
             <div th:case="0"><a th:href="@{'/grilles/33}"></a></div>
             <div th:case="1"><img src="rond-blanc.png"></div>
             <div th:case="2"><img src="rond-noir.png"></div>
-            </a>
         </td>
         <td onclick="location.href='/grille/3/4'" th:switch="${Grille.matrice[3][4]}">
             <div th:case="0"></div>
@@ -364,6 +363,7 @@
      
     </tr>
 </table>
+</div>
   <br/>
   <a th:href="@{/grille/saveGrille}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Sauvegarder et quitter</a>
 
