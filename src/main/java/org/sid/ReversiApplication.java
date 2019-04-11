@@ -50,8 +50,8 @@ public class ReversiApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		Joueur j1=joueurRepository.save(new Joueur("el farkh","said","admin","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
 		Joueur j2=joueurRepository.save(new Joueur("bourges","clement","user","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
-		Joueur j3=joueurRepository.save(new Joueur("varane","rafael","varane","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
-		Joueur j4=joueurRepository.save(new Joueur("ronaldo","christiano","ronaldo","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
+		Joueur j3=joueurRepository.save(new Joueur("laneres","clement","clement","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
+		Joueur j4=joueurRepository.save(new Joueur("minouar","hamza","hamza","$2a$10$/tEXFDmfefHgi7RX6vO30.BOrx2XmnwkPJaWd7LLJGbA222Vbb52W"));
 		
 		
 		

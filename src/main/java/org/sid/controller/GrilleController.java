@@ -53,8 +53,8 @@ public class GrilleController {
 	    	grille=moteurJeuInt.saveGrille(this.grille);
 	    	
 	    	try {
-	    	  	 j1=moteurJeuInt.addJoueur("said","elfarkh","test1","1234");
-		    	 j2=moteurJeuInt.addJoueur("said","elfarkh","test2","1234");
+	    	  	 j1=moteurJeuInt.addJoueur("elfarkh","said","test1","1234");
+		    	 j2=moteurJeuInt.addJoueur("bourges","clement","test2","1234");
 	    	}catch(Exception e) {
 	    		
 	    	}
