@@ -27,7 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @ComponentScan("org.sid")
 @ComponentScan("org.sid.security")
 @EntityScan("org.sid")
-public class BanqueApplication implements CommandLineRunner{
+public class ReversiApplication implements CommandLineRunner{
 	
 	@Autowired
 	private JoueurRepository joueurRepository;
@@ -41,7 +41,7 @@ public class BanqueApplication implements CommandLineRunner{
 	@Autowired
 	private RelationRepository relationRepository;
 	public static void main(String[] args) {
-		SpringApplication.run(BanqueApplication.class, args);
+		SpringApplication.run(ReversiApplication.class, args);
 	
 	}
 
@@ -81,14 +81,7 @@ public class BanqueApplication implements CommandLineRunner{
 		Relation rel7=relationRepository.save(new Relation(j3,user));
 		
 		
-		
-		/*
-		banqueMetier.verser("aa", 2000);
-		banqueMetier.retirer("bb", 1000);
-	  
-		*/
-		/*String hash = BCrypt.hashpw("1234", BCrypt.gensalt()); 
-		System.out.println("le hash =     "+hash);*/
+	
 			
 	}
 
