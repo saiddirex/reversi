@@ -25,6 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @ComponentScan("org.sid")
+@ComponentScan("org.sid.security")
 @EntityScan("org.sid")
 public class BanqueApplication implements CommandLineRunner{
 	

@@ -80,7 +80,7 @@ public class GrilleController {
 				} else {
 					joueur = 1;//blanc
 				}
-				boolean valide = moteurJeuInt.isValide(grille, joueur, id1, id2);
+				boolean valide = moteurJeuInt.isValide2(grille, joueur, id1, id2);
 				if (valide) {
 					if (grille.tour % 2 == 0) {
 						grille.matrice[id1][id2] = 2;

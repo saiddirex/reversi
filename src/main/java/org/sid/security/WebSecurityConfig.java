@@ -52,6 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	{ 
 		return new BCryptPasswordEncoder(); 
 	}
+	
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
 
  
 @Override
@@ -67,6 +70,8 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	    .authoritiesByUsernameQuery("select username as principal,role as role from relation where username=?")
 	    .rolePrefix("ROLE_")
 	    .passwordEncoder(passwordEncoder());
+	
+	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	    
 	  
 }
