@@ -33,10 +33,7 @@ public class AppMainMVCController {
 	        this.grilleController = grilleController;
 	    }
 	    
-	    
-	    
-	 /*   @Autowired
-	    private MoteurJeuInterface moteurJeuInt;*/
+	   
 
 	    @GetMapping
 	    public ModelAndView main(Model model) {

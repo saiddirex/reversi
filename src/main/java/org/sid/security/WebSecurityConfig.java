@@ -18,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 
-   /* @Override
+   /* 
+     //Partie pour stackage des utilisateurs en memoire
+     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
@@ -57,12 +59,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	private UserDetailsServiceImpl userDetailsService;
 
  
-@Override
-protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	
-	/*
-	auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles("ADMIN","USER");
-	auth.inMemoryAuthentication().withUser("user").password("{noop}1234").roles("USER"); */
+	
 	 
 	auth.jdbcAuthentication()
 	    .dataSource(dataSource)
@@ -77,9 +77,9 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 }
 	
 	
-@Override
-protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
+   @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
             .antMatchers("/error").permitAll()
             .antMatchers("/resources/**").permitAll()
             .anyRequest().authenticated()

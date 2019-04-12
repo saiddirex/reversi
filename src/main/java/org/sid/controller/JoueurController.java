@@ -47,6 +47,8 @@ public class JoueurController {
 		return "addJoueur";
 	}
 	
+	
+	
 	@RequestMapping (value="/saveJoueur" , method=RequestMethod.POST)
 	public String saveJoueur(Model model,String nom,String prenom,String username,String password) {
 	
@@ -59,9 +61,10 @@ public class JoueurController {
 			return "redirect:/addJoueur?error="+e.getMessage();
 		}
 	
-		
 		return "redirect:/joueurs";
 	}
+	
+	
 	
 	@RequestMapping ("/nouvellePartie")
 	public String newPartie( ) {

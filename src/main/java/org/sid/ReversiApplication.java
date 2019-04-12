@@ -66,6 +66,8 @@ public class ReversiApplication implements CommandLineRunner{
 		Partie p5=partieRepository.save(new Partie(j2,j4,g1));
 		Partie p6=partieRepository.save(new Partie(j3,j4,g1));
 		
+		
+		
 		Role admin=roleRepository.save(new Role("ADMIN"));
 		Role user=roleRepository.save(new Role("USER"));
 		
@@ -80,9 +82,6 @@ public class ReversiApplication implements CommandLineRunner{
 
 		Relation rel7=relationRepository.save(new Relation(j3,user));
 		
-		
-	
-			
 	}
 
 }

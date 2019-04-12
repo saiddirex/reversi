@@ -33,20 +33,19 @@ public class GrilleController {
 	    @Autowired
 	    private MoteurJeuInterface moteurJeuInt;
 
-	
-	  /*  public GrilleController(MoteurJeuInterface moteurJeuInt) {
-	        this.moteurJeuInt=moteurJeuInt;
-	    }*/
 
 	    public GrilleController()
 	    {
 	        grille= new Grille();
 	    }
 	    
+	    
 	    @GetMapping
 	    public Grille grille() {
 	    	return this.grille;
 	    }
+	    
+	    
 	    
 	    @GetMapping("/saveGrille")
 	    public String saveGrille() {
@@ -66,11 +65,10 @@ public class GrilleController {
 	    }
 	    
 	    
+	    
 
 	    @GetMapping("{id1}/{id2}")
 	    public String displayQuote(@PathVariable(value = "id1") Integer id1,@PathVariable(value = "id2") Integer id2) {
-	        //System.out.println(id1);
-	       // System.out.println(id2);
 	        
 	        //Mécanique de jeu !!!
 	        int joueur;
@@ -100,10 +98,10 @@ public class GrilleController {
 				moteurJeuInt.comptePoint(grille);
 			}
 	       
-	        //moteurJeuInt.changerCouleur(id1, id2, 3, 3, 2, grille);
-
 	        return "<meta http-equiv='refresh' content='0; url=/main'>";
 	    }
+	    
+	    
 	    ModelAndView getGrille(String viewName) {
 	        return new ModelAndView(viewName, "Grille", grille);
 	    }
